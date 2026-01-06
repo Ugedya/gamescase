@@ -25,7 +25,13 @@
   </head>
   <body>
     <h1>🎮Угадай число</h1>
-    <div style= "margin: 10px;">
+    <div class="message" id="hint">Я загадал число от 1 до 10</div>
+    <div>
+      <input type="number"
+        id="guessInput" min="1" max="10"
+        placeholder="1-10">
+    </div>
+       <div style= "margin: 10px;">
       <button
         onclick="window.location.href='portfolio.html'"
         style="padding: 8px 15px; 
@@ -33,12 +39,6 @@
         border-radius: 6px;">
         ← В портфолио
       </button>
-    </div>
-    <div class="message" id="hint">Я загадал число от 1 до 10</div>
-    <div>
-      <input type="number"
-        id="guessInput" min="1" max="10"
-        placeholder="1-10">
     </div>
       <script>
         const tg = window.Telegram.WebApp;
