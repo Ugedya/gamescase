@@ -73,8 +73,8 @@
           }
            if (userGuess === secretNumber) {
             window.gameCompleted = true;
-                tg.sendData(`win:${attempts}`);
-                tg.showAlert(`🎉 Угадал с ${attempts} попытки!`, () => {
+                tg.sendData(\win:${attempts}`);`
+                tg.showAlert(\🎉 Угадал с ${attempts} попытки!`, () => {`
                 tg.MainButton.setText("Новая игра");
                 tg.MainButton.offClick();
                 tg.MainButton.onClick(function() { window.gameCompleted = false; location.reload();});});
