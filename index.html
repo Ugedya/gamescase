@@ -72,9 +72,16 @@
             return;
           }
            if (userGuess === secretNumber) {
-            window.gameCompleted = true;
-                tg.sendData(`win:${attempts}`);
-                tg.showAlert(`🎉 Угадал с ${attempts} попытки!`, () => {
+  window.gameCompleted = true;
+  
+  console.log('🎯 Победа! attempts:', attempts);
+  console.log('📤 Отправляю данные боту...');
+  
+  tg.sendData(`win:${attempts}`);
+  
+  console.log('✅ Данные отправлены');
+  
+  tg.showAlert(`🎉 Угадал с ${attempts} попытки!`, () => {
                 tg.MainButton.setText("Новая игра");
                 tg.MainButton.offClick();
                 tg.MainButton.onClick(function() { window.gameCompleted = false; location.reload();});});
