@@ -73,6 +73,8 @@
           }
            if (userGuess === secretNumber) {
   window.gameCompleted = true;
+             console.log('🔄 Отправляю данные боту:', `win:${attempts}`);
+console.log('Токен бота в игре:', window.Telegram.WebApp.version);
              tg.sendData(`win:${attempts}`);
                 tg.showAlert(`🎉 Угадал с ${attempts} попытки!`, () => {
                 tg.MainButton.setText("Новая игра");
