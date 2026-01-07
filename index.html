@@ -73,9 +73,16 @@
           }
            if (userGuess === secretNumber) {
   window.gameCompleted = true;
-             console.log('🔄 Отправляю данные боту:', `win:${attempts}`);
-console.log('Токен бота в игре:', window.Telegram.WebApp.version);
-             tg.sendData(`win:${attempts}`);
+             fetch('https://telegram-bot-railway-production-0184.up.railway.app/api/game-result', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    user_id: tg.initDataUnsafe.user.id,
+    data: `win:${attempts}`
+  })
+})
+.then(res => console.log('✅ Данные отправлены на сервер'))
+.catch(err => console.error('❌ Ошибка:', err));
                 tg.showAlert(`🎉 Угадал с ${attempts} попытки!`, () => {
                 tg.MainButton.setText("Новая игра");
                 tg.MainButton.offClick();
