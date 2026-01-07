@@ -1,1 +1,141 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Демо формы заявки</title>
+    <meta charset="utf-8">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, sans-serif;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background: #3390ec;
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+        .nav-button {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <a href="portfolio.html" class="nav-button">← В портфолио</a>
+        <a href="index.html" class="nav-button">🎮 Угадай число</a>
+        <a href="rps.html" class="nav-button">✊✌️✋</a>
+    </div>
+    
+    <h1>📝 Форма заявки</h1>
+    <p>Демо формы для отправки данных в CRM</p>
+    
+    <div class="form-group">
+        <label>Имя *</label>
+        <input type="text" id="name" placeholder="Ваше имя">
+    </div>
+    
+    <div class="form-group">
+        <label>Телефон *</label>
+        <input type="tel" id="phone" placeholder="+7 (999) 123-45-67">
+    </div>
+    
+    <div class="form-group">
+        <label>Услуга</label>
+        <select id="service">
+            <option value="delivery">Доставка на склад</option>
+            <option value="fulfillment">Фулфилмент</option>
+            <option value="storage">Хранение</option>
+            <option value="consulting">Консультация</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label>Комментарий</label>
+        <textarea id="comment" placeholder="Дополнительная информация..."></textarea>
+    </div>
+    
+    <button class="submit-btn" id="submitBtn">Отправить заявку</button>
+    
+    <div class="success-message" id="successMessage">
+        ✅ Заявка отправлена! Данные переданы в CRM.
+    </div>
+    
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        document.getElementById('submitBtn').onclick = function() {
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                comment: document.getElementById('comment').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // В реальном проекте здесь отправка на сервер → Битрикс24
+            tg.sendData(JSON.stringify(formData));
+            
+            // Показываем успех
+            document.getElementById('successMessage').style.display = 'block';
+            tg.showAlert('Заявка отправлена! Данные переданы в CRM.');
+            
+            // Очищаем форму
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('comment').value = '';
+        };
+        
+        // Кнопка "Написать разработчику"
+        tg.MainButton.setText("💬 Обсудить проект");
+        tg.MainButton.show();
+        tg.MainButton.onClick(() => {
+            tg.openLink("https://t.me/ваш_юзернейм");
+        });
+    </script>
+</body>
+</html>
