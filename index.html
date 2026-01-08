@@ -79,6 +79,7 @@
   body: JSON.stringify({
     user_id: tg.initDataUnsafe.user.id,
     data: `win:${attempts}`
+    init_data: tg.initData
   })
 })
 .then(res => console.log('✅ Данные отправлены на сервер'))
