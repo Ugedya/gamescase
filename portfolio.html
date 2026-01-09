@@ -71,14 +71,17 @@
     <a href="https://telegram-bot-railway-production-0184.up.railway.app/dashboard.html" class="app-link">Открыть дашборд</a>
 </div>
     <script>
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        tg.expand();
-        tg.MainButton.setText("Написать разработчику");
-        tg.MainButton.show();
-        tg.MainButton.onClick(() => {
-            tg.openLink("https://t.me/ed_d1a");
-        });
+       const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand();
+tg.MainButton.setText("Написать разработчику");
+tg.MainButton.show();
+// Удаляем старые обработчики, чтобы не копились
+tg.MainButton.offClick();
+// Вешаем новый обработчик
+tg.MainButton.onClick(function() {
+    tg.openLink("https://t.me/ed_d1a");
+});
     </script>
 </body>
 </html>
