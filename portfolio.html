@@ -74,30 +74,11 @@
 const tg = window.Telegram.WebApp;
 tg.ready();
 tg.expand();
-
-// Убираем MainButton
-tg.MainButton.hide();
-
-// Создаём HTML-кнопку
-const contactBtn = document.createElement('button');
-contactBtn.textContent = '💬 Написать разработчику';
-contactBtn.style.cssText = `
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #3390ec;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10000;
-`;
-contactBtn.onclick = () => {
-    tg.openLink('https://t.me/ed_d1a');
-};
-document.body.appendChild(contactBtn);
+tg.MainButton.setText("Написать разработчику");
+tg.MainButton.show();
+tg.MainButton.onClick(() => {
+    tg.openLink("https://t.me/ed_d1a");
+});
     </script>
 </body>
 </html>
